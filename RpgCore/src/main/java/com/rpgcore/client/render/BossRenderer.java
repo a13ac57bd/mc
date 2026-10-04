@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
  * telegraph is readable; GeckoLib animations replace this in the art pass (the move name is already synced).
  */
 public class BossRenderer extends HumanoidMobRenderer<RpgBoss, HumanoidModel<RpgBoss>> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/zombie/husk.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.parse("textures/entity/zombie/husk.png");
 
     public BossRenderer(EntityRendererProvider.Context ctx) {
         super(ctx, new BossModel(ctx.bakeLayer(ModelLayers.ZOMBIE)), 0.5F * RpgBoss.SCALE);

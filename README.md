@@ -26,4 +26,4 @@ python3 RpgCore/tools/gen_structures.py          # 重新產生古堡與 GameTes
 ```
 
 ## 目前狀態
-模組本體還沒在有 Forge 的環境編譯過，第一次建置時要確認的項目列在 TECH_SPEC §20。
+`gradlew build` 成功（0 個警告），`runGameTestServer` 全部通過，古堡自然生成正常。還沒在用戶端與外部模組（TACZ、Iron's、Curios）一起測過，詳見 TECH_SPEC §20。

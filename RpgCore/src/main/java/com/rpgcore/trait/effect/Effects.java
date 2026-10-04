@@ -155,7 +155,7 @@ public final class Effects {
             if (c.target == null) return;
             c.target.setTicksFrozen(0);
             for (String id : new String[]{"irons_spellbooks:chilled", "irons_spellbooks:frozen"}) {
-                MobEffect e = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(id));
+                MobEffect e = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.parse(id));
                 if (e != null) c.target.removeEffect(e);
             }
         }));

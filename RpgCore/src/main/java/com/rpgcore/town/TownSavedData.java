@@ -136,7 +136,7 @@ public class TownSavedData extends SavedData {
             ResourceLocation id = ResourceLocation.tryParse(key);
             if (id == null) continue;
             CompoundTag t = all.getCompound(key);
-            ResourceKey<Level> dim = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(t.getString("dimension")));
+            ResourceKey<Level> dim = ResourceKey.create(Registries.DIMENSION, ResourceLocation.parse(t.getString("dimension")));
             Town town = new Town(id, dim, NbtUtils.readBlockPos(t.getCompound("center")), t.getInt("radius"));
             if (t.contains("inn")) town.inn = NbtUtils.readBlockPos(t.getCompound("inn"));
             town.hidden = t.getBoolean("hidden");

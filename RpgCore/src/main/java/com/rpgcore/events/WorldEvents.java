@@ -137,7 +137,7 @@ public final class WorldEvents {
         if (flag.startsWith("quest_done:")) {
             ResourceLocation quest = ResourceLocation.tryParse(flag.substring("quest_done:".length()));
             for (EventMachine.Instance inst : new ArrayList<>(machine.active())) {
-                EventDef def = EventDefs.get(new ResourceLocation(inst.defId));
+                EventDef def = EventDefs.get(ResourceLocation.parse(inst.defId));
                 EventDef.Goal goal = def == null ? null : def.goals().get(inst.state);
                 if (goal != null && goal.type().equals("quest_done") && goal.id().equals(quest)) apply(machine.goalMet(inst.defId));
             }
@@ -148,7 +148,7 @@ public final class WorldEvents {
     public static void onKill(ServerLevel level, LivingEntity victim, ResourceLocation id) {
         if (machine == null || id == null) return;
         for (EventMachine.Instance inst : new ArrayList<>(machine.active())) {
-            EventDef def = EventDefs.get(new ResourceLocation(inst.defId));
+            EventDef def = EventDefs.get(ResourceLocation.parse(inst.defId));
             if (def == null) continue;
             EventDef.Goal goal = def.goals().get(inst.state);
             if (goal == null || !goal.type().equals("kill_specific") || !id.equals(goal.id())) continue;
@@ -187,7 +187,7 @@ public final class WorldEvents {
         WorldEventSavedData data = WorldEventSavedData.get(server);
         data.capture(machine);
         for (EventMachine.Transition t : out) {
-            EventDef def = EventDefs.get(new ResourceLocation(t.defId()));
+            EventDef def = EventDefs.get(ResourceLocation.parse(t.defId()));
             if (def == null) continue;
             if (t.to() != null) onEnter(data, def, t.to());
             if (t.outcome() != null) onFinish(def, t.from(), t.outcome());
@@ -271,7 +271,7 @@ public final class WorldEvents {
         List<Active> list = new ArrayList<>();
         if (machine != null) {
             for (EventMachine.Instance inst : machine.active()) {
-                EventDef def = EventDefs.get(new ResourceLocation(inst.defId));
+                EventDef def = EventDefs.get(ResourceLocation.parse(inst.defId));
                 if (def == null) continue;
                 Active a = resolve(def, inst.state);
                 if (a != null) list.add(a);

@@ -46,14 +46,14 @@ public final class DangerConfig {
                 r = new int[arr.size()];
                 for (int i = 0; i < arr.size(); i++) r[i] = arr.get(i).getAsInt();
             }
-            Json.obj(j, "dimensions").entrySet().forEach(d -> dims.put(new ResourceLocation(d.getKey()), d.getValue().getAsInt()));
+            Json.obj(j, "dimensions").entrySet().forEach(d -> dims.put(ResourceLocation.parse(d.getKey()), d.getValue().getAsInt()));
             Json.obj(j, "biomes").entrySet().forEach(b -> {
                 String key = b.getKey();
                 int mod = b.getValue().getAsInt();
-                if (key.startsWith("#")) bio.add(new BiomeMod(TagKey.create(Registries.BIOME, new ResourceLocation(key.substring(1))), null, mod));
-                else bio.add(new BiomeMod(null, new ResourceLocation(key), mod));
+                if (key.startsWith("#")) bio.add(new BiomeMod(TagKey.create(Registries.BIOME, ResourceLocation.parse(key.substring(1))), null, mod));
+                else bio.add(new BiomeMod(null, ResourceLocation.parse(key), mod));
             });
-            Json.obj(j, "structures").entrySet().forEach(s -> structs.put(new ResourceLocation(s.getKey()), s.getValue().getAsInt()));
+            Json.obj(j, "structures").entrySet().forEach(s -> structs.put(ResourceLocation.parse(s.getKey()), s.getValue().getAsInt()));
         }
         rings = r;
         dimensions = dims;

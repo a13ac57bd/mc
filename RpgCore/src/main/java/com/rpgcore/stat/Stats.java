@@ -27,7 +27,7 @@ public final class Stats {
             RpgAttributes.DASH_CHARGES, RpgAttributes.DASH_COOLDOWN, RpgAttributes.DASH_DISTANCE, RpgAttributes.DASH_AIR);
 
     /** Apothic Attributes crit applies to every damage with an attacker, spells included (breaks #3). */
-    private static final ResourceLocation APOTHIC_CRIT = new ResourceLocation("attributeslib", "crit_chance");
+    private static final ResourceLocation APOTHIC_CRIT = ResourceLocation.fromNamespaceAndPath("attributeslib", "crit_chance");
 
     @Mod.EventBusSubscriber(modid = RpgCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static final class ModEvents {

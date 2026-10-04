@@ -17,8 +17,8 @@ public final class RpgCore {
     public static final String MODID = "rpgcore";
     public static final Logger LOG = LogUtils.getLogger();
 
-    public RpgCore() {
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public RpgCore(FMLJavaModLoadingContext context) {
+        IEventBus modBus = context.getModEventBus();
         RpgRegistries.register(modBus);
         modBus.addListener(this::commonSetup);
         Compat.init();
@@ -32,6 +32,6 @@ public final class RpgCore {
     }
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

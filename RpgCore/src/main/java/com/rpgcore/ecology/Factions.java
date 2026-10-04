@@ -44,7 +44,7 @@ public final class Factions {
         RpgData.each("faction", files, (id, json) -> {
             JsonObject j = json.getAsJsonObject();
             ResourceLocation tag = Json.id(j, "tag");
-            if (tag == null) tag = new ResourceLocation(id.getNamespace(), "faction/" + id.getPath());
+            if (tag == null) tag = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "faction/" + id.getPath());
             loaded.put(id, new FactionDef(id, TagKey.create(Registries.ENTITY_TYPE, tag), new HashSet<>(Json.ids(j, "hostile"))));
         });
         factions = loaded;

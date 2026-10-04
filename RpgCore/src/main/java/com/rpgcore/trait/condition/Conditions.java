@@ -53,8 +53,8 @@ public final class Conditions {
 
     /** Iron's "frozen" style effects that count as frozen for target_frozen. */
     private static final ResourceLocation[] FROZEN_EFFECTS = {
-            new ResourceLocation("irons_spellbooks", "chilled"),
-            new ResourceLocation("irons_spellbooks", "frozen")
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "chilled"),
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "frozen")
     };
 
     public static boolean isFrozen(LivingEntity e) {

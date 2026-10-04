@@ -68,7 +68,7 @@ public final class Blueprints {
             Map<Character, BlockState> palette = new HashMap<>();
             palette.put('_', Blocks.AIR.defaultBlockState());
             for (Map.Entry<String, JsonElement> e : Json.obj(j, "palette").entrySet()) {
-                ResourceLocation bid = new ResourceLocation(e.getValue().getAsString());
+                ResourceLocation bid = ResourceLocation.parse(e.getValue().getAsString());
                 if (!ForgeRegistries.BLOCKS.containsKey(bid)) throw new IllegalArgumentException("unknown block " + bid);
                 Block block = ForgeRegistries.BLOCKS.getValue(bid);
                 palette.put(e.getKey().charAt(0), block.defaultBlockState());

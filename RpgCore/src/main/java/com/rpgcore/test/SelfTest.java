@@ -37,6 +37,15 @@ public final class SelfTest {
         out.add("data: traits=" + TraitRegistry.all().size() + " uniques=" + Uniques.all().size() + " bases=" + Bases.all().size()
                 + " sources=" + LootSources.all().size() + " bosses=" + BossDefs.all().size() + " events=" + EventDefs.all().size()
                 + " quests=" + QuestDefs.all().size() + " blueprints=" + Blueprints.all().size());
+        int[] checked = new int[1];
+        List<String> bad = entityProblems(level, checked);
+        out.add("entities checked: " + checked[0] + ", problems: " + bad.size());
+        out.addAll(bad.subList(0, Math.min(20, bad.size())));
+        return out;
+    }
+
+    /** Spawns every living entity type once; returns the ones that are not x5 or not at full health. */
+    public static List<String> entityProblems(ServerLevel level, int[] checkedOut) {
         BlockPos at = new BlockPos(level.getSharedSpawnPos().getX(), level.getMaxBuildHeight() - 8, level.getSharedSpawnPos().getZ());
         int checked = 0;
         List<String> bad = new ArrayList<>();
@@ -63,8 +72,7 @@ public final class SelfTest {
             if (!scaled || !full) bad.add(id + ": scaled=" + scaled + " full=" + full + " (" + living.getHealth() + "/" + living.getMaxHealth() + ")");
             living.discard();
         }
-        out.add("entities checked: " + checked + ", problems: " + bad.size());
-        out.addAll(bad.subList(0, Math.min(20, bad.size())));
-        return out;
+        checkedOut[0] = checked;
+        return bad;
     }
 }

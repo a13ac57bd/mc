@@ -34,6 +34,7 @@ import com.rpgcore.registry.RpgEntities;
 import com.rpgcore.registry.RpgItems;
 import com.rpgcore.rift.RiftInstance;
 import com.rpgcore.rift.RiftManager;
+import com.rpgcore.test.CastleCheck;
 import com.rpgcore.test.SelfTest;
 import com.rpgcore.town.NpcEntity;
 import com.rpgcore.town.TownDefs;
@@ -212,7 +213,18 @@ public final class RpgCommands {
                     List<String> lines = SelfTest.run(c.getSource().getLevel());
                     for (String l : lines) ok(c, () -> Component.literal(l));
                     return lines.size();
-                })));
+                }).then(Commands.literal("castle").executes(c -> {
+                    // builds a castle 64 blocks east of the caller and writes castle_top.png / castle_side.png
+                    ServerLevel level = c.getSource().getLevel();
+                    BlockPos at = BlockPos.containing(c.getSource().getPosition()).offset(64, 0, 0);
+                    CastleCheck.Result r = CastleCheck.placeAndScan(level, at, new java.io.File(level.getServer().getServerDirectory(), "rpgcore_selftest"));
+                    if (r == null || r.box() == null) {
+                        c.getSource().sendFailure(Component.literal("castle did not generate"));
+                        return 0;
+                    }
+                    ok(c, () -> Component.literal("castle: " + r.pieces() + " pieces at " + r.box() + " " + r.counts()));
+                    return r.pieces();
+                }))));
     }
 
     private static int unique(CommandContext<CommandSourceStack> c, int tierOrLocal) throws CommandSyntaxException {

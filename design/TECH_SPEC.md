@@ -334,21 +334,26 @@ com.rpgcore
 | M10 | 內容填充：區域、地城、Boss、任務、傳奇（依美術進度） | 全部 |
 
 ## 20. 重建版的驗證狀態
-這個雲端環境的網路政策擋住 Forge／Mojang／Parchment 的 Maven，所以**模組本體在這裡沒有編譯過，也沒有跑過遊戲**。已做的驗證：
+已在雲端環境用 Forge 47.4.10（MDG legacyforge 2.0.147、Gradle 9.2.1、JDK 17）實際建置與執行：
 
 | 項目 | 方式 | 結果 |
 |---|---|---|
-| 純邏輯（`com.rpgcore.logic`） | `gradle -p RpgCore/logic test`（JUnit 5，只需 Maven Central） | 22 個測試全過：跨流派驗證、保底與 1 萬次掉落模擬、鍛造花費、危險度、Dash 距離、裂隙減半、世界事件時間線與佇列、任務分支、結局表、經驗值 |
-| 跨檔一致性 | `python3 RpgCore/tools/lint.py <ecj.jar>`：Eclipse 編譯器只用 JDK 編譯，濾掉缺少 Minecraft 類別造成的錯誤 | rpgcore 自己的類別之間沒有名稱、成員、參數數量錯誤 |
-| Forge 專屬 API | 對照 GitHub 上 MinecraftForge `1.20.1` 分支原始碼 | 事件、網路、選單、GameTest、GUI overlay、GLM 的簽名都相符 |
-| 特性資料 | 以和 `TraitRules` 相同的規則檢查全部 39 個特性 JSON | 全部合法 |
-| 結構 NBT | `tools/gen_structures.py` 產生後讀回檢查 | 格式正確 |
+| 編譯 | `gradlew clean build` | 成功，0 個警告（已改用 `ResourceLocation.fromNamespaceAndPath/parse` 與建構子注入的 `FMLJavaModLoadingContext`） |
+| 純邏輯 | JUnit（`logic` 子專案與主專案的 `test`） | 22/22 通過 |
+| GameTest | `gradlew runGameTestServer`（原版＋rpgcore） | 20 個必要測試全過＋1 個選用測試通過；TACZ／Iron's 的 2 個測試在沒裝時標為略過 |
+| 全生物 ×5 | GameTest `allEntitiesAreScaledX5`（`SelfTest.entityProblems`） | 原版與 rpgcore 所有生物生成後都 ×5 且滿血 |
+| 古堡 | GameTest `castleGenerates`（像 `/place structure`）與 `naturalCastleGenerates`（找最近的自然古堡並生成整片區塊） | 都是 7 塊房間、0 個殘留 Jigsaw；誓約石 1、Boss 祭壇 1、秘密牆 42、捷徑門 2、場地門 9、吊燈 5、炸藥桶 8、箱子 4。俯視／側視圖輸出到 `run/rpgcore_selftest/` |
+| 資料載入 | 伺服器 log | 39 特性、113 個 rpgcore 資料檔、無錯誤；缺 TACZ／Iron's 時跳過 4 件傳奇、5 個基底（預期） |
 
-**尚未驗證、第一次在本機建置時要確認的：**
-1. `gradlew build`：原版 Minecraft（mojmap）API 的名稱只能在有 Forge 的環境確認。
-2. `gradlew runGameTestServer`：`test/RpgGameTests` 共 17 個 GameTest（×5 尺度、跨流派拒絕、遞迴上限、掉落、精英、AI 角色、陣營、秘密牆、捷徑門、炸藥桶連鎖、油地、吊燈、Boss 階段；TACZ／Iron's 沒裝時標為略過）。
-3. 反射綁定的類別／方法名稱（`compat/`）：TACZ `EntityHurtByGunEvent$Pre/Post`、`GunFireEvent`、`GunReloadEvent`、`EntityKillByGunEvent`、`IGun`、`TimelessAPI`；Iron's `SpellOnCastEvent`、`SpellDamageEvent`、`SpellRegistry`、`MagicData`、`CastSource`、`AbstractSpell#onCast`；Curios `CuriosApi#getCuriosInventory`、`CurioChangeEvent`。不符時伺服器 log 會出現 `rpgcore compat: missing ...`。
-4. 傳奇與基底裡的外部物品 id（`tacz:modern_kinetic_gun` 的 GunId、`irons_spellbooks:*`）：找不到的會在載入時跳過並記錄數量。
+注意：
+- GameTest 的相對座標 y=0 是結構方塊那一列，`empty` 樣板的地板在 y=1，測試從 y=2 開始放東西。
+- 用 `/place` 或 `castleGenerates` 放進已生成的地形時，房間會被山丘蓋住一部分；自然生成有 `beard_thin` 地形調整，不會這樣。
+
+**還沒驗證的：**
+1. 用戶端（HUD、說明框、鍛造台／對話／日誌介面、渲染器）：這個環境沒有顯示器，無法開客戶端。
+2. 反射綁定的外部模組名稱（`compat/`）：要裝 TACZ／Iron's／Curios 才能測。不符時伺服器 log 會出現 `rpgcore compat: missing ...`。
+3. 傳奇與基底裡的外部物品 id（`tacz:modern_kinetic_gun` 的 GunId、`irons_spellbooks:*`）。
+4. 手感：戰鬥、Dash、Boss 招式需要玩家實機測試。
 
 ## 21. 資料檔一覽（`data/<ns>/rpgcore/`）
 | 資料夾 | 內容 |
@@ -367,4 +372,4 @@ com.rpgcore
 | blueprints/ | cottage、watchtower |
 
 ## 22. 指令（權限 2）
-`/rpgcore unique <id> [tier]`、`loot <source> [tier]`、`gear <rarity> [tier]`、`danger`、`elite`、`aitime`、`boss <id>`、`rift open [tier]`、`rift list`、`event start|advance|goal|force|status`、`progress set|clear|list`、`ending`、`town create <id>`、`town inn <id>`、`npc <role> <dialogue>`、`quest start|advance|reset`、`blueprint <id>`、`unlock <civ>`、`scroll <civ>`、`selftest`
+`/rpgcore unique <id> [tier]`、`loot <source> [tier]`、`gear <rarity> [tier]`、`danger`、`elite`、`aitime`、`boss <id>`、`rift open [tier]`、`rift list`、`event start|advance|goal|force|status`、`progress set|clear|list`、`ending`、`town create <id>`、`town inn <id>`、`npc <role> <dialogue>`、`quest start|advance|reset`、`blueprint <id>`、`unlock <civ>`、`scroll <civ>`、`selftest`、`selftest castle`

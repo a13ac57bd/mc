@@ -19,10 +19,10 @@ public final class RiftConfig {
     public static double rewardPerFloor = 0.20;
     public static int bossStartFloor = 5;
     public static double bossChance = 0.2;
-    public static ResourceLocation boss = new ResourceLocation("rpgcore", "test_boss");
+    public static ResourceLocation boss = ResourceLocation.fromNamespaceAndPath("rpgcore", "test_boss");
     public static int baseMobs = 4;
     public static int mobsPerFloor = 1;
-    public static List<ResourceLocation> mobs = List.of(new ResourceLocation("minecraft", "zombie"), new ResourceLocation("minecraft", "skeleton"));
+    public static List<ResourceLocation> mobs = List.of(ResourceLocation.fromNamespaceAndPath("minecraft", "zombie"), ResourceLocation.fromNamespaceAndPath("minecraft", "skeleton"));
     /** Chance per player per night; 1/3 = on average every 3 days. */
     public static double portalChance = 1.0 / 3.0;
     public static int portalMin = 50;

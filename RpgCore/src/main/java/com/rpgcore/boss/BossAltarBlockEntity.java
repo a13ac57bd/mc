@@ -29,7 +29,7 @@ import java.util.UUID;
 public class BossAltarBlockEntity extends BlockEntity {
     public static final int EMPTY_RESET_TICKS = 100;
 
-    private ResourceLocation bossId = new ResourceLocation("rpgcore", "test_boss");
+    private ResourceLocation bossId = ResourceLocation.fromNamespaceAndPath("rpgcore", "test_boss");
     private int radius = 14;
     private UUID bossUuid;
     private boolean defeated;

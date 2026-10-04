@@ -87,7 +87,7 @@ public final class RpgData extends SimpleJsonResourceReloadListener {
         Map<ResourceLocation, JsonElement> out = new LinkedHashMap<>();
         all.forEach((id, json) -> {
             if (id.getPath().startsWith(prefix)) {
-                out.put(new ResourceLocation(id.getNamespace(), id.getPath().substring(prefix.length())), json);
+                out.put(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath().substring(prefix.length())), json);
             }
         });
         return out;

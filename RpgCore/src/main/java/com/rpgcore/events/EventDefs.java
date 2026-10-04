@@ -71,7 +71,7 @@ public final class EventDefs {
 
     private static EventDef.Effects parseEffects(ResourceLocation id, String state, JsonObject o) {
         SpawnTables.TableDef spawns = o.has("spawns")
-                ? SpawnTables.parse(new ResourceLocation(id.getNamespace(), id.getPath() + "/" + state), Json.obj(o, "spawns"))
+                ? SpawnTables.parse(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + "/" + state), Json.obj(o, "spawns"))
                 : null;
         return new EventDef.Effects(Json.integer(o, "danger", 0), spawns, Json.bool(o, "hide_npcs", false), Json.id(o, "boss"),
                 Json.bool(o, "smoke", false), Json.integer(o, "refugees", 0), Json.bool(o, "corruption", false), Json.str(o, "dialogue", null));

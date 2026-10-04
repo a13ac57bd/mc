@@ -127,7 +127,7 @@ public class BuildTableBlockEntity extends BlockEntity {
     private boolean placeLayer(ServerLevel level, List<Blueprints.Placement> layer) {
         for (Blueprints.Placement p : layer) {
             BlockPos pos = world(p.pos());
-            BlockState state = p.state().rotate(rotation);
+            BlockState state = p.state().rotate(level, pos, rotation);
             if (level.getBlockState(pos).equals(state)) continue;
             Item item = state.getBlock().asItem();
             if (item != Items.AIR && !takeFromNeighbours(level, item)) {
