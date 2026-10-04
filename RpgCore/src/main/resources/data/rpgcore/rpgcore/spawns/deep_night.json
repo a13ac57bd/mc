@@ -1,0 +1,22 @@
+{
+  "dimension": "minecraft:overworld",
+  "danger": [
+    3,
+    5
+  ],
+  "time": "night",
+  "add": [
+    {
+      "type": "minecraft:witch",
+      "weight": 8,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "type": "minecraft:vindicator",
+      "weight": 4,
+      "min": 1,
+      "max": 2
+    }
+  ]
+}

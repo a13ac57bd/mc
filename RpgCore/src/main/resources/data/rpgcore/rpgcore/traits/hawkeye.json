@@ -1,0 +1,30 @@
+{
+  "type": "unique",
+  "school": "bow",
+  "rules": [
+    {
+      "trigger": "bow_hit",
+      "conditions": [
+        {
+          "type": "distance",
+          "min": 20
+        }
+      ],
+      "effects": [
+        {
+          "type": "force_crit"
+        }
+      ]
+    },
+    {
+      "trigger": "bow_hit",
+      "effects": [
+        {
+          "type": "damage_mult_per_hit",
+          "per": 0.15,
+          "max": 6
+        }
+      ]
+    }
+  ]
+}

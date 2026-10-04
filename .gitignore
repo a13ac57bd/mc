@@ -1,0 +1,18 @@
+# local toolchains and caches (TECH_SPEC §1)
+jdk17/
+jdk21/
+.gradle-home/
+_jars/
+# self-test server: rebuilt by pack/tools/fetch-mods.ps1 and gradlew deployServer
+server/
+
+# gradle / IDE
+**/build/
+**/.gradle/
+**/run/
+**/runs/
+**/out/
+.idea/
+*.iml
+.vscode/
+*.log

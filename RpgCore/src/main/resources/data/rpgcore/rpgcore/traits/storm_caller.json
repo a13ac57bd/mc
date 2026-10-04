@@ -1,0 +1,26 @@
+{
+  "type": "unique",
+  "school": "spell",
+  "rules": [
+    {
+      "trigger": "spell_cast",
+      "conditions": [
+        {
+          "type": "spell_school",
+          "school": "lightning"
+        },
+        {
+          "type": "chance",
+          "value": 0.35
+        }
+      ],
+      "effects": [
+        {
+          "type": "extra_casts",
+          "count": 2,
+          "spread": 15
+        }
+      ]
+    }
+  ]
+}

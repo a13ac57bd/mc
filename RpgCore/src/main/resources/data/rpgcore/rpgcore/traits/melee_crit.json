@@ -1,0 +1,24 @@
+{
+  "type": "minor",
+  "school": "melee",
+  "roll": {
+    "min": 0.05,
+    "max": 0.12
+  },
+  "rules": [
+    {
+      "trigger": "melee_hit",
+      "effects": [
+        {
+          "type": "force_crit"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "chance",
+          "value": "roll"
+        }
+      ]
+    }
+  ]
+}

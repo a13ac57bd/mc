@@ -1,0 +1,48 @@
+{
+  "fixed": [
+    {
+      "item": "#material",
+      "count": [
+        1,
+        2
+      ],
+      "chance": 0.35
+    },
+    {
+      "item": "#ammo",
+      "count": [
+        4,
+        12
+      ],
+      "chance": 0.15,
+      "options": [
+        {
+          "item": "tacz:ammo",
+          "nbt": "{AmmoId:\"tacz:9mm\"}"
+        },
+        {
+          "item": "tacz:ammo",
+          "nbt": "{AmmoId:\"tacz:762x39\"}"
+        },
+        {
+          "item": "tacz:ammo",
+          "nbt": "{AmmoId:\"tacz:12g\"}"
+        }
+      ]
+    }
+  ],
+  "equipment": {
+    "chance": 0.04,
+    "rarity": {
+      "common": 70,
+      "uncommon": 25,
+      "rare": 5
+    },
+    "rolls": 1
+  },
+  "legendary": {
+    "chance": 0.001,
+    "pool": "world",
+    "first_kill": false
+  }
+}

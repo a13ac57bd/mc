@@ -1,0 +1,19 @@
+{
+  "type": "minor",
+  "school": "spell",
+  "roll": {
+    "min": 0.03,
+    "max": 0.08
+  },
+  "rules": [
+    {
+      "trigger": "spell_dealt",
+      "effects": [
+        {
+          "type": "heal_fraction",
+          "fraction": "roll"
+        }
+      ]
+    }
+  ]
+}

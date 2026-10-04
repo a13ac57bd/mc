@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:netherite_axe",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:executioner"
+  ],
+  "pool": "boss"
+}

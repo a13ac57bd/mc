@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "minecraft:block/lodestone"
+    },
+    "lit=true": {
+      "model": "rpgcore:block/oath_stone_lit"
+    }
+  }
+}

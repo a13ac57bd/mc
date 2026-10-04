@@ -1,0 +1,33 @@
+{
+  "type": "unique",
+  "school": "any",
+  "rules": [
+    {
+      "trigger": "passive",
+      "effects": [
+        {
+          "type": "attribute",
+          "attribute": "rpgcore:dash_air",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "trigger": "kill",
+      "effects": [
+        {
+          "type": "temp_attribute",
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.25,
+          "operation": "multiply_base",
+          "seconds": 4
+        }
+      ]
+    }
+  ]
+}

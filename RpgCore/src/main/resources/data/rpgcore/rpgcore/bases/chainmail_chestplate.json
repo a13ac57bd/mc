@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:chainmail_chestplate",
+  "category": "armor",
+  "tiers": [
+    1,
+    2
+  ],
+  "weight": 8
+}

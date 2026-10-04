@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:crossbow",
+  "category": "bow",
+  "tiers": [
+    2,
+    5
+  ],
+  "weight": 6
+}

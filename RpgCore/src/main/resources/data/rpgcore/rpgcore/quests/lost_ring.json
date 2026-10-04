@@ -1,0 +1,33 @@
+{
+  "steps": [
+    {
+      "id": "find",
+      "objective": {
+        "type": "find_item",
+        "target": "rpgcore:old_ring",
+        "count": 1
+      }
+    },
+    {
+      "id": "return",
+      "objective": {
+        "type": "talk",
+        "target": "rpgcore:riverside/innkeeper"
+      },
+      "choices": [
+        {
+          "id": "give",
+          "next": "end"
+        },
+        {
+          "id": "keep",
+          "next": "end"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 50,
+    "loot_source": "rpgcore:quest"
+  }
+}

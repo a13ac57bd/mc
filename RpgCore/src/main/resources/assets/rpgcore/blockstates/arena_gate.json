@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "rpgcore:block/arena_gate"
+    },
+    "open=true": {
+      "model": "rpgcore:block/arena_gate_open"
+    }
+  }
+}

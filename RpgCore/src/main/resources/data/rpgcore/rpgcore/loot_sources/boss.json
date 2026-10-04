@@ -1,0 +1,31 @@
+{
+  "fixed": [
+    {
+      "item": "#material",
+      "count": [
+        8,
+        14
+      ],
+      "chance": 1.0
+    },
+    {
+      "item": "rpgcore:void_core",
+      "count": 1,
+      "chance": 0.5
+    }
+  ],
+  "equipment": {
+    "chance": 1.0,
+    "rarity": {
+      "common": 10,
+      "uncommon": 50,
+      "rare": 40
+    },
+    "rolls": 3
+  },
+  "legendary": {
+    "chance": 0.15,
+    "pool": "boss",
+    "first_kill": true
+  }
+}

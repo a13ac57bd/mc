@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "id": "castle",
+      "objective": {
+        "type": "interact_block",
+        "target": "rpgcore:oath_stone"
+      }
+    },
+    {
+      "id": "boss",
+      "objective": {
+        "type": "kill_specific",
+        "target": "rpgcore:test_boss"
+      }
+    },
+    {
+      "id": "report",
+      "objective": {
+        "type": "talk",
+        "target": "rpgcore:riverside/elder"
+      },
+      "choices": [
+        {
+          "id": "spare",
+          "next": "end"
+        },
+        {
+          "id": "burn",
+          "next": "end"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "xp": 200,
+    "loot_source": "rpgcore:quest"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:netherite_chestplate",
+  "category": "armor",
+  "tiers": [
+    5,
+    5
+  ],
+  "weight": 3
+}

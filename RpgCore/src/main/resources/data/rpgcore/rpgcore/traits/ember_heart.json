@@ -1,0 +1,25 @@
+{
+  "type": "unique",
+  "school": "any",
+  "rules": [
+    {
+      "trigger": "hurt",
+      "effects": [
+        {
+          "type": "ignite",
+          "seconds": 4
+        }
+      ]
+    },
+    {
+      "trigger": "passive",
+      "effects": [
+        {
+          "type": "attribute",
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

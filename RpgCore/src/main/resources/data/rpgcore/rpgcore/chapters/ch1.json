@@ -1,0 +1,6 @@
+{
+  "quest": "rpgcore:ch1_shadow",
+  "order": 1,
+  "choice_step": "report",
+  "key": "ch1"
+}

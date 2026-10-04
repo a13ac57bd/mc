@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:bow",
+  "category": "bow",
+  "tiers": [
+    1,
+    5
+  ],
+  "weight": 10
+}

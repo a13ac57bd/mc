@@ -1,0 +1,41 @@
+{
+  "name": "blueprint.rpgcore.watchtower",
+  "civilization": "rpgcore:stonework",
+  "palette": {
+    "s": "minecraft:stone_bricks",
+    "f": "minecraft:oak_fence",
+    "t": "minecraft:torch"
+  },
+  "layers": [
+    [
+      "sss",
+      "sss",
+      "sss"
+    ],
+    [
+      "s_s",
+      "s_s",
+      "s_s"
+    ],
+    [
+      "s_s",
+      "s_s",
+      "s_s"
+    ],
+    [
+      "s_s",
+      "s_s",
+      "s_s"
+    ],
+    [
+      "sss",
+      "sss",
+      "sss"
+    ],
+    [
+      "f_f",
+      "_t_",
+      "f_f"
+    ]
+  ]
+}

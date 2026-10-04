@@ -1,0 +1,25 @@
+{
+  "type": "minor",
+  "school": "bow",
+  "roll": {
+    "min": 0.1,
+    "max": 0.25
+  },
+  "rules": [
+    {
+      "trigger": "bow_hit",
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": "roll"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "distance",
+          "min": 16
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "inscription",
+  "school": "any",
+  "rules": [
+    {
+      "trigger": "any_hit",
+      "conditions": [
+        {
+          "type": "chance",
+          "value": 0.15
+        }
+      ],
+      "effects": [
+        {
+          "type": "stun",
+          "seconds": 0.5
+        }
+      ]
+    }
+  ]
+}

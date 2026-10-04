@@ -1,0 +1,24 @@
+{
+  "type": "minor",
+  "school": "spell",
+  "roll": {
+    "min": 0.15,
+    "max": 0.3
+  },
+  "rules": [
+    {
+      "trigger": "spell_hit",
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": "roll"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "target_frozen"
+        }
+      ]
+    }
+  ]
+}

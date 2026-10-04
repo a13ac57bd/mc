@@ -1,0 +1,27 @@
+{
+  "rings": [
+    1000,
+    2500,
+    5000,
+    8000
+  ],
+  "dimensions": {
+    "minecraft:the_nether": 4,
+    "minecraft:the_end": 5
+  },
+  "biomes": {
+    "minecraft:deep_dark": 2,
+    "#minecraft:is_badlands": 1,
+    "#minecraft:is_mountain": 1,
+    "minecraft:mushroom_fields": -1
+  },
+  "structures": {
+    "rpgcore:castle": 3,
+    "minecraft:ancient_city": 5,
+    "minecraft:stronghold": 4,
+    "minecraft:fortress": 4,
+    "minecraft:bastion_remnant": 5,
+    "minecraft:woodland_mansion": 4,
+    "minecraft:pillager_outpost": 2
+  }
+}

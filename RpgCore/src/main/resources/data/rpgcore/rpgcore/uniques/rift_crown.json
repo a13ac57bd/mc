@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:golden_helmet",
+  "rarity": "artifact",
+  "traits": [
+    "rpgcore:rift_crown"
+  ],
+  "pool": "rift"
+}

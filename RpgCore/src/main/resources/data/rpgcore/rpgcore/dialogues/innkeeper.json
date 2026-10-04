@@ -1,0 +1,67 @@
+{
+  "start": "greet",
+  "nodes": {
+    "greet": {
+      "lines": [
+        "dialogue.rpgcore.innkeeper.greet"
+      ],
+      "options": [
+        {
+          "text": "dialogue.rpgcore.innkeeper.rest",
+          "actions": [
+            {
+              "type": "rest"
+            }
+          ],
+          "next": "rested"
+        },
+        {
+          "text": "dialogue.rpgcore.innkeeper.ask_ring",
+          "conditions": [
+            {
+              "type": "quest_not_started",
+              "quest": "rpgcore:lost_ring"
+            }
+          ],
+          "actions": [
+            {
+              "type": "start_quest",
+              "quest": "rpgcore:lost_ring"
+            }
+          ],
+          "next": "ring"
+        },
+        {
+          "text": "dialogue.rpgcore.bye"
+        }
+      ]
+    },
+    "rested": {
+      "lines": [
+        "dialogue.rpgcore.innkeeper.rested"
+      ],
+      "options": [
+        {
+          "text": "dialogue.rpgcore.bye"
+        }
+      ]
+    },
+    "ring": {
+      "lines": [
+        "dialogue.rpgcore.innkeeper.ring1",
+        "dialogue.rpgcore.innkeeper.ring2"
+      ],
+      "options": [
+        {
+          "text": "dialogue.rpgcore.ok",
+          "actions": [
+            {
+              "type": "add_clue",
+              "clue": "clue.rpgcore.ring_well"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

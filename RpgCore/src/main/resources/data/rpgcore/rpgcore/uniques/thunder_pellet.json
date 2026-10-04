@@ -1,0 +1,9 @@
+{
+  "item": "tacz:modern_kinetic_gun",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:thunder_pellet"
+  ],
+  "pool": "world",
+  "nbt": "{GunId:\"tacz:m870\"}"
+}

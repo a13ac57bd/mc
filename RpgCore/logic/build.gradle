@@ -1,0 +1,45 @@
+// Standalone build for the Minecraft-free logic in com.rpgcore.logic.
+// Runs anywhere with Maven Central (no Forge/Mojang download):  gradle -p logic test
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['../src/main/java']
+            include 'com/rpgcore/logic/**'
+        }
+        resources.srcDirs = []
+    }
+    test {
+        java {
+            srcDirs = ['../src/test/java']
+            include 'com/rpgcore/logic/**'
+        }
+        resources.srcDirs = []
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'failed'
+        exceptionFormat 'full'
+    }
+}

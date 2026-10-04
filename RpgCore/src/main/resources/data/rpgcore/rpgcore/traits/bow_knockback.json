@@ -1,0 +1,19 @@
+{
+  "type": "minor",
+  "school": "bow",
+  "roll": {
+    "min": 0.3,
+    "max": 0.8
+  },
+  "rules": [
+    {
+      "trigger": "bow_dealt",
+      "effects": [
+        {
+          "type": "knockback",
+          "strength": "roll"
+        }
+      ]
+    }
+  ]
+}

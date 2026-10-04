@@ -1,0 +1,9 @@
+{
+  "item": "tacz:modern_kinetic_gun",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:void_hunter"
+  ],
+  "pool": "world",
+  "nbt": "{GunId:\"tacz:db_short\"}"
+}

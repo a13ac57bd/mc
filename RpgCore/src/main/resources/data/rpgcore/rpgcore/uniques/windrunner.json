@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:leather_boots",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:windrunner"
+  ],
+  "pool": "world"
+}

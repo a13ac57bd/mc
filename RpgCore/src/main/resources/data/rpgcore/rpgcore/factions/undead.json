@@ -1,0 +1,7 @@
+{
+  "tag": "rpgcore:faction/undead",
+  "hostile": [
+    "rpgcore:bandit",
+    "rpgcore:beast"
+  ]
+}

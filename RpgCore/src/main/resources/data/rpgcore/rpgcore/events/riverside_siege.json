@@ -1,0 +1,74 @@
+{
+  "trigger": {
+    "type": "boss_killed",
+    "id": "rpgcore:test_boss"
+  },
+  "region": {
+    "town": "rpgcore:riverside",
+    "radius": 160
+  },
+  "initial": "rumors",
+  "states": {
+    "rumors": {
+      "days": 2,
+      "next": "siege",
+      "effects": {
+        "danger": 1,
+        "smoke": true,
+        "dialogue": "event.rpgcore.siege.rumors"
+      }
+    },
+    "siege": {
+      "days": 3,
+      "next": "fallen",
+      "on_success": "held",
+      "goal": {
+        "type": "kill_specific",
+        "id": "rpgcore:test_boss"
+      },
+      "effects": {
+        "danger": 2,
+        "smoke": true,
+        "refugees": 3,
+        "boss": "rpgcore:test_boss",
+        "dialogue": "event.rpgcore.siege.attack",
+        "spawns": {
+          "time": "any",
+          "danger": [
+            1,
+            5
+          ],
+          "add": [
+            {
+              "type": "minecraft:pillager",
+              "weight": 20,
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      }
+    },
+    "held": {
+      "outcome": "held",
+      "rewards": "rpgcore:event_held"
+    },
+    "fallen": {
+      "on_success": "reclaimed",
+      "goal": {
+        "type": "kill_specific",
+        "id": "minecraft:ravager"
+      },
+      "effects": {
+        "danger": 2,
+        "hide_npcs": true,
+        "corruption": true,
+        "smoke": true
+      }
+    },
+    "reclaimed": {
+      "outcome": "reclaimed",
+      "rewards": "rpgcore:event_reclaimed"
+    }
+  }
+}

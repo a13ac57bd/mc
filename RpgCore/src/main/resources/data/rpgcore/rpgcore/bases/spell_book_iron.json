@@ -1,0 +1,9 @@
+{
+  "item": "irons_spellbooks:iron_spell_book",
+  "category": "spell",
+  "tiers": [
+    1,
+    3
+  ],
+  "weight": 6
+}

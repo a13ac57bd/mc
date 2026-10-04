@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:diamond_boots",
+  "category": "armor",
+  "tiers": [
+    3,
+    5
+  ],
+  "weight": 6
+}

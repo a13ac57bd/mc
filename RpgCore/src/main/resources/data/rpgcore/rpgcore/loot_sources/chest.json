@@ -1,0 +1,68 @@
+{
+  "fixed": [
+    {
+      "item": "#material",
+      "count": [
+        2,
+        5
+      ],
+      "chance": 1.0
+    },
+    {
+      "item": "#ammo",
+      "count": [
+        10,
+        24
+      ],
+      "chance": 0.4,
+      "options": [
+        {
+          "item": "tacz:ammo",
+          "nbt": "{AmmoId:\"tacz:9mm\"}"
+        },
+        {
+          "item": "tacz:ammo",
+          "nbt": "{AmmoId:\"tacz:762x39\"}"
+        },
+        {
+          "item": "tacz:ammo",
+          "nbt": "{AmmoId:\"tacz:12g\"}"
+        }
+      ]
+    },
+    {
+      "item": "rpgcore:frost_core",
+      "count": 1,
+      "chance": 0.05
+    },
+    {
+      "item": "rpgcore:ember_core",
+      "count": 1,
+      "chance": 0.05
+    },
+    {
+      "item": "rpgcore:storm_core",
+      "count": 1,
+      "chance": 0.05
+    },
+    {
+      "item": "rpgcore:venom_core",
+      "count": 1,
+      "chance": 0.05
+    }
+  ],
+  "equipment": {
+    "chance": 0.5,
+    "rarity": {
+      "common": 50,
+      "uncommon": 35,
+      "rare": 15
+    },
+    "rolls": 1
+  },
+  "legendary": {
+    "chance": 0.01,
+    "pool": "world",
+    "first_kill": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minor",
+  "school": "gun",
+  "roll": {
+    "min": 0.06,
+    "max": 0.15
+  },
+  "rules": [
+    {
+      "trigger": "gun_hit",
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": "roll"
+        }
+      ]
+    }
+  ]
+}

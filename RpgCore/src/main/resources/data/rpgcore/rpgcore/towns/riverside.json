@@ -1,0 +1,36 @@
+{
+  "name": "town.rpgcore.riverside",
+  "radius": 64,
+  "npcs": [
+    {
+      "role": "innkeeper",
+      "name": "npc.rpgcore.innkeeper",
+      "dialogue": "rpgcore:innkeeper",
+      "offset": [
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "role": "smith",
+      "name": "npc.rpgcore.smith",
+      "dialogue": "rpgcore:smith",
+      "offset": [
+        -3,
+        0,
+        0
+      ]
+    },
+    {
+      "role": "elder",
+      "name": "npc.rpgcore.elder",
+      "dialogue": "rpgcore:elder",
+      "offset": [
+        0,
+        0,
+        3
+      ]
+    }
+  ]
+}

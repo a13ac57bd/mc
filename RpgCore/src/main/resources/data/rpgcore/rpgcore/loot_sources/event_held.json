@@ -1,0 +1,26 @@
+{
+  "fixed": [
+    {
+      "item": "#material",
+      "count": [
+        6,
+        10
+      ],
+      "chance": 1.0
+    }
+  ],
+  "equipment": {
+    "chance": 1.0,
+    "rarity": {
+      "common": 0,
+      "uncommon": 50,
+      "rare": 50
+    },
+    "rolls": 2
+  },
+  "legendary": {
+    "chance": 0.1,
+    "pool": "world",
+    "first_kill": false
+  }
+}

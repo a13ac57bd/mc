@@ -1,0 +1,47 @@
+{
+  "name": "blueprint.rpgcore.cottage",
+  "civilization": "rpgcore:basic",
+  "palette": {
+    "c": "minecraft:cobblestone",
+    "p": "minecraft:oak_planks",
+    "l": "minecraft:oak_log",
+    "g": "minecraft:glass_pane"
+  },
+  "layers": [
+    [
+      "ccccc",
+      "ccccc",
+      "ccccc",
+      "ccccc",
+      "ccccc"
+    ],
+    [
+      "lpppl",
+      "p___p",
+      "p___p",
+      "p___p",
+      "lp_pl"
+    ],
+    [
+      "lpgpl",
+      "g___g",
+      "p___p",
+      "g___g",
+      "lp_pl"
+    ],
+    [
+      "lpppl",
+      "p___p",
+      "p___p",
+      "p___p",
+      "lpppl"
+    ],
+    [
+      "ppppp",
+      "ppppp",
+      "ppppp",
+      "ppppp",
+      "ppppp"
+    ]
+  ]
+}

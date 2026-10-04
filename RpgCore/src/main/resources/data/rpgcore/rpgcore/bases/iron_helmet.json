@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:iron_helmet",
+  "category": "armor",
+  "tiers": [
+    1,
+    4
+  ],
+  "weight": 8
+}

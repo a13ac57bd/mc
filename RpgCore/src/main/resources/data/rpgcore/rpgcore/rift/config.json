@@ -1,0 +1,23 @@
+{
+  "seconds": 600,
+  "strength_per_floor": 0.15,
+  "reward_per_floor": 0.2,
+  "boss_start_floor": 5,
+  "boss_chance": 0.2,
+  "boss": "rpgcore:test_boss",
+  "base_mobs": 4,
+  "mobs_per_floor": 1,
+  "mobs": [
+    "minecraft:zombie",
+    "minecraft:skeleton",
+    "minecraft:husk",
+    "minecraft:stray",
+    "minecraft:spider",
+    "minecraft:witch",
+    "minecraft:vindicator"
+  ],
+  "portal_chance": 0.3333,
+  "portal_min": 50,
+  "portal_max": 150,
+  "room_radius": 10
+}

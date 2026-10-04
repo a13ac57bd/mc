@@ -1,0 +1,51 @@
+{
+  "type": "unique",
+  "school": "melee",
+  "rules": [
+    {
+      "trigger": "melee_hit",
+      "conditions": [
+        {
+          "type": "target_frozen"
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": 0.5
+        },
+        {
+          "type": "force_crit"
+        }
+      ]
+    },
+    {
+      "trigger": "melee_dealt",
+      "conditions": [
+        {
+          "type": "target_frozen"
+        }
+      ],
+      "effects": [
+        {
+          "type": "unfreeze"
+        }
+      ]
+    },
+    {
+      "trigger": "melee_dealt",
+      "conditions": [
+        {
+          "type": "chance",
+          "value": 0.2
+        }
+      ],
+      "effects": [
+        {
+          "type": "stun",
+          "seconds": 0.5
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "start": "greet",
+  "nodes": {
+    "greet": {
+      "lines": [
+        "dialogue.rpgcore.elder.greet"
+      ],
+      "options": [
+        {
+          "text": "dialogue.rpgcore.elder.story",
+          "conditions": [
+            {
+              "type": "quest_not_started",
+              "quest": "rpgcore:ch1_shadow"
+            }
+          ],
+          "actions": [
+            {
+              "type": "start_quest",
+              "quest": "rpgcore:ch1_shadow"
+            }
+          ],
+          "next": "story"
+        },
+        {
+          "text": "dialogue.rpgcore.bye"
+        }
+      ]
+    },
+    "story": {
+      "lines": [
+        "dialogue.rpgcore.elder.story1",
+        "dialogue.rpgcore.elder.story2"
+      ],
+      "options": [
+        {
+          "text": "dialogue.rpgcore.ok"
+        }
+      ]
+    }
+  }
+}

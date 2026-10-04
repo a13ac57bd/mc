@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:bow",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:hawkeye"
+  ],
+  "pool": "world"
+}

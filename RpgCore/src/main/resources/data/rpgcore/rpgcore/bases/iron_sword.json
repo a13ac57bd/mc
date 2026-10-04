@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:iron_sword",
+  "category": "melee",
+  "tiers": [
+    1,
+    3
+  ],
+  "weight": 10
+}

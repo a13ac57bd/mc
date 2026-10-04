@@ -1,0 +1,10 @@
+{
+  "item": "tacz:modern_kinetic_gun",
+  "category": "gun",
+  "tiers": [
+    1,
+    3
+  ],
+  "weight": 8,
+  "nbt": "{GunId:\"tacz:glock_17\"}"
+}

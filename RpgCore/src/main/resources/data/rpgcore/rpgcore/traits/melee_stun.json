@@ -1,0 +1,25 @@
+{
+  "type": "minor",
+  "school": "melee",
+  "roll": {
+    "min": 0.05,
+    "max": 0.1
+  },
+  "rules": [
+    {
+      "trigger": "melee_dealt",
+      "effects": [
+        {
+          "type": "stun",
+          "seconds": 1
+        }
+      ],
+      "conditions": [
+        {
+          "type": "chance",
+          "value": "roll"
+        }
+      ]
+    }
+  ]
+}

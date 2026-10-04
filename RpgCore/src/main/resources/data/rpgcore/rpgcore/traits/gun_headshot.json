@@ -1,0 +1,24 @@
+{
+  "type": "minor",
+  "school": "gun",
+  "roll": {
+    "min": 0.15,
+    "max": 0.35
+  },
+  "rules": [
+    {
+      "trigger": "gun_hit",
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": "roll"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "headshot"
+        }
+      ]
+    }
+  ]
+}

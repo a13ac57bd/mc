@@ -1,0 +1,55 @@
+{
+  "name": "boss.rpgcore.test_boss",
+  "health": 80,
+  "damage": 8,
+  "speed": 0.26,
+  "armor": 6,
+  "moves": [
+    {
+      "name": "charge",
+      "animation": "charge",
+      "shape": "charge",
+      "range": 10,
+      "width": 1.5,
+      "windup": 1.2,
+      "damage": 14,
+      "cooldown": 6,
+      "phases": [
+        2
+      ]
+    },
+    {
+      "name": "slam",
+      "animation": "slam",
+      "shape": "circle",
+      "range": 4,
+      "windup": 1.0,
+      "damage": 12,
+      "cooldown": 4,
+      "phases": [
+        1,
+        2
+      ]
+    },
+    {
+      "name": "sweep",
+      "animation": "sweep",
+      "shape": "cone",
+      "range": 5,
+      "angle": 90,
+      "windup": 0.7,
+      "damage": 9,
+      "cooldown": 3,
+      "phases": [
+        1,
+        2
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "threshold": 0.5,
+      "transition": 2.0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "unique",
+  "school": "any",
+  "rules": [
+    {
+      "trigger": "dash",
+      "effects": [
+        {
+          "type": "temp_attribute",
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.3,
+          "operation": "multiply_base",
+          "seconds": 3
+        }
+      ]
+    },
+    {
+      "trigger": "passive",
+      "effects": [
+        {
+          "type": "attribute",
+          "attribute": "rpgcore:dash_charges",
+          "amount": 1
+        }
+      ]
+    }
+  ]
+}

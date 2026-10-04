@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:iron_chestplate",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:ember_heart"
+  ],
+  "pool": "world"
+}

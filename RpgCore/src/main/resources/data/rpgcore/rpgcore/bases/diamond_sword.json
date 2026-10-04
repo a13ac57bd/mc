@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:diamond_sword",
+  "category": "melee",
+  "tiers": [
+    2,
+    5
+  ],
+  "weight": 10
+}

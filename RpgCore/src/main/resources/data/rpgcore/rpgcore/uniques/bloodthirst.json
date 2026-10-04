@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:iron_sword",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:bloodthirst"
+  ],
+  "pool": "world"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minor",
+  "school": "any",
+  "roll": {
+    "min": 0.1,
+    "max": 0.25
+  },
+  "rules": [
+    {
+      "trigger": "hurt",
+      "effects": [
+        {
+          "type": "temp_attribute",
+          "attribute": "minecraft:generic.armor",
+          "amount": "roll*20",
+          "seconds": 4
+        }
+      ]
+    }
+  ]
+}

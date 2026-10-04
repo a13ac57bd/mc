@@ -1,0 +1,30 @@
+{
+  "type": "unique",
+  "school": "gun",
+  "rules": [
+    {
+      "trigger": "gun_hit",
+      "effects": [
+        {
+          "type": "damage_mult_per_hit",
+          "per": 0.25
+        }
+      ]
+    },
+    {
+      "trigger": "gun_hit",
+      "conditions": [
+        {
+          "type": "distance",
+          "max": 8
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": 0.6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minor",
+  "school": "gun",
+  "roll": {
+    "min": 0.1,
+    "max": 0.25
+  },
+  "rules": [
+    {
+      "trigger": "gun_kill",
+      "effects": [
+        {
+          "type": "refill_magazine",
+          "amount": 0
+        }
+      ],
+      "conditions": [
+        {
+          "type": "chance",
+          "value": "roll"
+        }
+      ]
+    }
+  ]
+}

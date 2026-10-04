@@ -1,0 +1,37 @@
+{
+  "type": "unique",
+  "school": "melee",
+  "rules": [
+    {
+      "trigger": "melee_dealt",
+      "effects": [
+        {
+          "type": "counter_add",
+          "name": "stacks",
+          "amount": 1,
+          "reset": 4,
+          "max": 5
+        }
+      ]
+    },
+    {
+      "trigger": "melee_hit",
+      "conditions": [
+        {
+          "type": "counter",
+          "name": "stacks",
+          "min": 5
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage_mult",
+          "value": 0.8
+        },
+        {
+          "type": "force_crit"
+        }
+      ]
+    }
+  ]
+}

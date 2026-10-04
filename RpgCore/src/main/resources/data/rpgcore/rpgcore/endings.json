@@ -1,0 +1,21 @@
+{
+  "default": "ending.rpgcore.default",
+  "rules": [
+    {
+      "when": {
+        "ch1": "spare",
+        "ch2": "*",
+        "ch3": "*"
+      },
+      "ending": "ending.rpgcore.mercy"
+    },
+    {
+      "when": {
+        "ch1": "burn",
+        "ch2": "*",
+        "ch3": "*"
+      },
+      "ending": "ending.rpgcore.ashes"
+    }
+  ]
+}

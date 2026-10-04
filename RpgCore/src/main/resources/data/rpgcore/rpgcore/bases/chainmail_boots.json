@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:chainmail_boots",
+  "category": "armor",
+  "tiers": [
+    1,
+    2
+  ],
+  "weight": 8
+}

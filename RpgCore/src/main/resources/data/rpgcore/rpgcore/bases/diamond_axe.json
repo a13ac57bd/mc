@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:diamond_axe",
+  "category": "melee",
+  "tiers": [
+    3,
+    5
+  ],
+  "weight": 6
+}

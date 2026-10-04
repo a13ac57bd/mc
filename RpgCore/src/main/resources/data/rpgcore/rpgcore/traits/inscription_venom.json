@@ -1,0 +1,22 @@
+{
+  "type": "inscription",
+  "school": "any",
+  "rules": [
+    {
+      "trigger": "any_hit",
+      "conditions": [
+        {
+          "type": "chance",
+          "value": 0.1
+        }
+      ],
+      "effects": [
+        {
+          "type": "aoe_damage",
+          "radius": 2,
+          "value": 2
+        }
+      ]
+    }
+  ]
+}

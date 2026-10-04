@@ -1,0 +1,6 @@
+{
+  "tag": "rpgcore:faction/beast",
+  "hostile": [
+    "rpgcore:bandit"
+  ]
+}

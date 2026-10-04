@@ -1,0 +1,37 @@
+{
+  "type": "unique",
+  "school": "gun",
+  "rules": [
+    {
+      "trigger": "gun_dealt",
+      "conditions": [
+        {
+          "type": "pellets",
+          "eq": 6
+        }
+      ],
+      "effects": [
+        {
+          "type": "stun",
+          "seconds": 1
+        },
+        {
+          "type": "knockback",
+          "strength": 1.0
+        }
+      ]
+    },
+    {
+      "trigger": "gun_reload",
+      "effects": [
+        {
+          "type": "temp_attribute",
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.2,
+          "operation": "multiply_base",
+          "seconds": 2
+        }
+      ]
+    }
+  ]
+}

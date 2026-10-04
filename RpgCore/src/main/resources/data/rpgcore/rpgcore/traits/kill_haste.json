@@ -1,0 +1,22 @@
+{
+  "type": "minor",
+  "school": "any",
+  "roll": {
+    "min": 0.1,
+    "max": 0.2
+  },
+  "rules": [
+    {
+      "trigger": "kill",
+      "effects": [
+        {
+          "type": "temp_attribute",
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": "roll",
+          "operation": "multiply_base",
+          "seconds": 3
+        }
+      ]
+    }
+  ]
+}

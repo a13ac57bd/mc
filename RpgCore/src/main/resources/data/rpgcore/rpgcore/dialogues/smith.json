@@ -1,0 +1,23 @@
+{
+  "start": "greet",
+  "nodes": {
+    "greet": {
+      "lines": [
+        "dialogue.rpgcore.smith.greet"
+      ],
+      "options": [
+        {
+          "text": "dialogue.rpgcore.smith.forge",
+          "actions": [
+            {
+              "type": "open_forge"
+            }
+          ]
+        },
+        {
+          "text": "dialogue.rpgcore.bye"
+        }
+      ]
+    }
+  }
+}

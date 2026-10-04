@@ -1,0 +1,8 @@
+{
+  "item": "irons_spellbooks:artificer_cane",
+  "rarity": "legendary",
+  "traits": [
+    "rpgcore:storm_caller"
+  ],
+  "pool": "world"
+}

@@ -1,0 +1,103 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.147'
+}
+
+version = mod_version
+group = 'com.rpgcore'
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+legacyForge {
+    version = "${minecraft_version}-${forge_version}"
+
+    parchment {
+        minecraftVersion = parchment_minecraft_version
+        mappingsVersion = parchment_mappings_version
+    }
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        // Dev environment is vanilla + rpgcore only; tests that need TACZ/Iron's are skipped there (§18).
+        gameTestServer {
+            type = 'gameTestServer'
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'forge.enabledGameTestNamespaces', mod_id
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // External mods (TACZ, Iron's Spells, Curios, Champions...) are bound by reflection in com.rpgcore.compat,
+    // so the build needs no Modrinth/CurseMaven artifacts. See design/TECH_SPEC.md §1.
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+def modProps = [
+        mod_id                : mod_id,
+        mod_version           : mod_version,
+        minecraft_version_range: minecraft_version_range,
+        forge_version_range   : forge_version_range,
+        loader_version_range  : loader_version_range,
+]
+
+tasks.named('processResources', ProcessResources) {
+    inputs.properties modProps
+    filesMatching('META-INF/mods.toml') {
+        expand modProps
+    }
+}
+
+// Copies the reobfuscated jar into the self-test server (TECH_SPEC §1). Override with -PserverModsDir=...
+def serverModsDir = providers.gradleProperty('serverModsDir').orElse(file('../server/mods').absolutePath)
+tasks.register('deployServer', Copy) {
+    group = 'rpgcore'
+    description = 'Copies the mod jar into the self-test server mods folder.'
+    from tasks.named('reobfJar')
+    into serverModsDir
+    doFirst {
+        delete fileTree(serverModsDir.get()) { include "${mod_id}-*.jar" }
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

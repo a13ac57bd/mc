@@ -1,0 +1,9 @@
+{
+  "item": "minecraft:heart_of_the_sea",
+  "category": "accessory",
+  "tiers": [
+    2,
+    5
+  ],
+  "weight": 3
+}

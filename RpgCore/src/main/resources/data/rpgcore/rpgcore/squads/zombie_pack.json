@@ -1,0 +1,14 @@
+{
+  "leader": "minecraft:zombie",
+  "chance": 0.12,
+  "members": [
+    {
+      "type": "minecraft:husk",
+      "count": 1
+    },
+    {
+      "type": "minecraft:skeleton",
+      "count": 2
+    }
+  ]
+}
