@@ -1,0 +1,86 @@
+:root {
+  --bg: #f4f5f7; --card: #fff; --line: #d9dce1; --text: #1f2328; --muted: #6a737d;
+  --accent: #1f6feb; --avail: #b7e4c7; --sched: #1f6feb; --warn: #d1242f;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, "Microsoft JhengHei", "PingFang TC", sans-serif;
+  background: var(--bg); color: var(--text); font-size: 15px; }
+button { font: inherit; cursor: pointer; border: 1px solid var(--line); background: #fff;
+  border-radius: 6px; padding: 6px 12px; }
+button.primary, form button[type=submit] { background: var(--accent); color: #fff; border-color: var(--accent); }
+button.danger { color: var(--warn); }
+button.link { border: none; background: none; color: var(--accent); padding: 4px 6px; }
+button:disabled { opacity: .5; cursor: default; }
+input, select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; }
+
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px 16px;
+  background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+header nav { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+header nav button { white-space: nowrap; border: none; background: none; padding: 6px 10px; border-radius: 6px; }
+header nav button.on { background: #e7f0ff; color: var(--accent); font-weight: 600; }
+.who { color: var(--muted); font-size: 14px; }
+
+main { padding: 16px; max-width: 1400px; margin: 0 auto; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.login { max-width: 360px; margin: 10vh auto; display: flex; flex-direction: column; gap: 12px; }
+.login h1 { margin: 0 0 8px; font-size: 22px; text-align: center; }
+.login label { display: flex; flex-direction: column; gap: 4px; }
+.hint { color: var(--muted); font-size: 13px; margin: 0; }
+.error { color: var(--warn); min-height: 1em; margin: 0; }
+h2 { font-size: 18px; margin: 0 0 4px; }
+.sub { color: var(--muted); margin: 0 0 12px; font-size: 14px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+.spacer { flex: 1; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 13px; background: #eee; }
+.badge.ok { background: #dafbe1; color: #116329; }
+.badge.draft { background: #fff1c2; color: #7d4e00; }
+
+/* ---- 員工填寫：7 欄（天）× 24 列（小時） */
+.wk { border-collapse: separate; border-spacing: 2px; width: 100%; max-width: 640px; user-select: none; }
+.wk th { font-weight: 500; font-size: 13px; color: var(--muted); padding: 2px; }
+.wk thead th { cursor: pointer; line-height: 1.2; }
+.wk thead th small { display: block; font-size: 11px; }
+.wk td.h { text-align: right; font-size: 12px; color: var(--muted); width: 42px; white-space: nowrap; }
+.wk td.c { height: 26px; background: #eceef1; border-radius: 4px; cursor: pointer; }
+.wk td.c.on { background: #2da44e; }
+.wk td.c.s { background: var(--sched); }
+.wk.readonly td.c { cursor: default; }
+.total { font-size: 13px; color: var(--muted); }
+
+/* ---- 管理員排班：員工列 × 24 小時 */
+.daytabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.daytabs button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.scroll { overflow: auto; max-height: 70vh; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.ad { border-collapse: collapse; user-select: none; font-size: 13px; }
+.ad th, .ad td { border: 1px solid #edf0f2; }
+.ad thead th { position: sticky; top: 0; background: #fafbfc; z-index: 2; padding: 4px 0; min-width: 26px; font-weight: 500; }
+.ad tfoot td { position: sticky; bottom: 0; background: #fafbfc; text-align: center; font-weight: 600; z-index: 2; }
+.ad .nm { position: sticky; left: 0; background: #fff; z-index: 1; padding: 2px 8px; white-space: nowrap; text-align: left; min-width: 120px; }
+.ad thead .nm, .ad tfoot .nm { z-index: 3; background: #fafbfc; }
+.ad .sum { padding: 0 6px; text-align: right; color: var(--muted); white-space: nowrap; }
+.ad td.c { width: 26px; height: 24px; cursor: pointer; }
+.ad td.c.a { background: var(--avail); }
+.ad td.c.s { background: var(--sched); }
+.ad td.c.x { background: var(--warn); }         /* 排了但員工沒填可上 */
+.ad tr:hover td.nm { background: #f0f6ff; }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+.low { color: var(--warn); }
+
+table.list { border-collapse: collapse; width: 100%; }
+table.list th, table.list td { border-bottom: 1px solid #edf0f2; padding: 6px 8px; text-align: left; }
+table.list tr.off td { color: var(--muted); text-decoration: line-through; }
+
+#toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #24292f; color: #fff;
+  padding: 10px 18px; border-radius: 8px; z-index: 100; max-width: 90vw; }
+#toast.err { background: var(--warn); }
+
+@media (max-width: 600px) {
+  main { padding: 8px; }
+  header { padding: 6px 10px; }
+  header nav { order: 3; flex-basis: 100%; }
+  .who { margin-left: auto; }
+  h2 { font-size: 16px; }
+  .card { padding: 12px; }
+  .wk td.c { height: 24px; }
+}

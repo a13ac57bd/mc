@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>排班系統</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header id="top" hidden>
+  <strong>排班系統</strong>
+  <nav id="tabs"></nav>
+  <span class="who"><span id="who"></span>
+    <button class="link" id="btn-pw">改密碼</button>
+    <button class="link" id="btn-logout">登出</button></span>
+</header>
+
+<main id="app"></main>
+
+<div id="toast" hidden></div>
+
+<template id="tpl-login">
+  <form class="card login" id="login-form">
+    <h1>排班系統</h1>
+    <label>員工編號<input name="id" autocomplete="username" required inputmode="text" autofocus></label>
+    <label>密碼<input name="password" type="password" autocomplete="current-password" required></label>
+    <p class="hint">第一次登入時輸入的密碼，會成為你之後的密碼（至少 4 個字）。忘記密碼請找管理員。</p>
+    <button type="submit">登入</button>
+    <p class="error" id="login-err"></p>
+  </form>
+</template>
+
+<script src="/app.js"></script>
+</body>
+</html>
