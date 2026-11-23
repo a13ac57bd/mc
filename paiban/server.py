@@ -1,6 +1,6 @@
 """排班系統伺服器：只用 Python 標準函式庫（不需要 pip install）。
 
-執行：python server.py          （預設 http://0.0.0.0:8080）
+執行：python server.py          （http://localhost:8080，只有這台電腦能連）
       python server.py --port 80
 資料存在同資料夾的 paiban.db（SQLite），備份只要複製這個檔案。
 """
@@ -14,6 +14,7 @@ import secrets
 import sqlite3
 import threading
 import time
+import webbrowser
 from datetime import date, datetime, timedelta
 from http import cookies
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -22,7 +23,7 @@ from urllib.parse import parse_qs, urlparse
 BASE = os.path.dirname(os.path.abspath(__file__))
 STATIC = os.path.join(BASE, "static")
 DB_PATH = os.environ.get("PAIBAN_DB", os.path.join(BASE, "paiban.db"))
-SESSION_DAYS = 30
+SESSION_HOURS = 12  # 共用電腦：登入最多維持 12 小時（另有前端閒置自動登出）
 FULL_DAY = (1 << 24) - 1
 ID_RE = re.compile(r"^[A-Za-z0-9_-]{1,20}$")
 
@@ -201,9 +202,11 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def read_json(self):
+        n = int(self.headers.get("Content-Length") or 0)
+        if n == 0:
+            return {}
         if not self.headers.get("Content-Type", "").startswith("application/json"):
             raise ApiError(415, "需要 JSON")
-        n = int(self.headers.get("Content-Length") or 0)
         if n > 1_000_000:
             raise ApiError(413, "資料太大")
         try:
@@ -212,8 +215,7 @@ class Handler(BaseHTTPRequestHandler):
             raise ApiError(400, "JSON 格式錯誤")
 
     def client_ip(self):
-        # 經過 Cloudflare Tunnel 時，真實 IP 在這個標頭
-        return self.headers.get("CF-Connecting-IP") or self.client_address[0]
+        return self.client_address[0]
 
     def session_token(self):
         c = cookies.SimpleCookie(self.headers.get("Cookie", ""))
@@ -229,9 +231,6 @@ class Handler(BaseHTTPRequestHandler):
             (tok, time.time()),
         ).fetchone()
         return r
-
-    def secure_cookie(self):
-        return self.headers.get("X-Forwarded-Proto") == "https" or "CF-Connecting-IP" in self.headers
 
     # ---- 路由
     def do_GET(self):
@@ -318,10 +317,9 @@ def api_login(h, c, _user, _q, body):
         raise ApiError(401, "編號或密碼錯誤")
     tok = secrets.token_urlsafe(32)
     c.execute("DELETE FROM sessions WHERE expires<?", (time.time(),))
-    c.execute("INSERT INTO sessions VALUES (?,?,?)", (tok, uid, time.time() + SESSION_DAYS * 86400))
-    cookie = f"sid={tok}; Path=/; HttpOnly; SameSite=Strict; Max-Age={SESSION_DAYS * 86400}"
-    if h.secure_cookie():
-        cookie += "; Secure"
+    c.execute("INSERT INTO sessions VALUES (?,?,?)", (tok, uid, time.time() + SESSION_HOURS * 3600))
+    # 不設 Max-Age：關掉瀏覽器就登出
+    cookie = f"sid={tok}; Path=/; HttpOnly; SameSite=Strict"
     return {"user": user_info(u), "first": first}, [("Set-Cookie", cookie)]
 
 
@@ -486,13 +484,16 @@ ROUTES = {
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--host", default="0.0.0.0")
+    ap.add_argument("--host", default="127.0.0.1")  # 只接受本機連線
     ap.add_argument("--port", type=int, default=8080)
+    ap.add_argument("--open", action="store_true", help="啟動後自動打開瀏覽器")
     a = ap.parse_args()
     init_db()
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
-    print(f"排班系統已啟動：http://localhost:{a.port}  （資料庫：{DB_PATH}）")
-    print("關閉：按 Ctrl+C")
+    print(f"排班系統已啟動：http://127.0.0.1:{a.port}  （資料庫：{DB_PATH}）")
+    print("關閉：按 Ctrl+C 或直接關掉這個視窗")
+    if a.open:
+        threading.Timer(1, webbrowser.open, (f"http://127.0.0.1:{a.port}",)).start()
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

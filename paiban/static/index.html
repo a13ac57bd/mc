@@ -18,13 +18,14 @@
 <main id="app"></main>
 
 <div id="toast" hidden></div>
+<div id="idle" hidden>即將自動登出：<b id="idle-n"></b> 秒（動一下滑鼠或按任意鍵可取消）</div>
 
 <template id="tpl-login">
-  <form class="card login" id="login-form">
+  <form class="card login" id="login-form" autocomplete="off">
     <h1>排班系統</h1>
-    <label>員工編號<input name="id" autocomplete="username" required inputmode="text" autofocus></label>
-    <label>密碼<input name="password" type="password" autocomplete="current-password" required></label>
-    <p class="hint">第一次登入時輸入的密碼，會成為你之後的密碼（至少 4 個字）。忘記密碼請找管理員。</p>
+    <label>員工編號<input name="id" autocomplete="off" required autofocus></label>
+    <label>密碼<input name="password" type="password" autocomplete="new-password" required></label>
+    <p class="hint">這台電腦大家共用，用完請記得<b>登出</b>（一段時間沒操作也會自動登出）。<br>第一次登入時輸入的密碼，會成為你之後的密碼（至少 4 個字）。忘記密碼請找管理員。</p>
     <button type="submit">登入</button>
     <p class="error" id="login-err"></p>
   </form>

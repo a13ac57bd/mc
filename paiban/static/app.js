@@ -86,6 +86,8 @@ async function boot() {
   if (!ME.user) return showLogin();
   $("#top").hidden = false;
   $("#who").textContent = `${ME.user.id} ${ME.user.name}`;
+  idleLimit = ME.user.is_admin ? 30 * 60 : 2 * 60; // 秒：管理員 30 分鐘、員工 2 分鐘
+  idleReset();
   const tabs = ME.user.is_admin
     ? [["排班", viewAdminSchedule], ["員工管理", viewAdminUsers]]
     : [["填寫可上班時段", viewFill], ["我的班表", viewMySchedule]];
@@ -115,7 +117,27 @@ function showLogin() {
   };
 }
 
-$("#btn-logout").onclick = async () => { if (!confirmLeave()) return; await api("POST", "/api/logout"); location.reload(); };
+async function logout() {
+  dirty = false;
+  try { await api("POST", "/api/logout", {}); } catch (e) { /* 已登出 */ }
+  location.reload();
+}
+$("#btn-logout").onclick = () => { if (confirmLeave()) logout(); };
+
+// 共用電腦：一段時間沒操作就自動登出（最後 30 秒顯示倒數，動一下就取消）
+const IDLE_WARN = 30;
+let idleLeft = Infinity, idleLimit = 0;
+function idleReset() { if (idleLimit) { idleLeft = idleLimit; $("#idle").hidden = true; } }
+["pointerdown", "pointermove", "keydown", "wheel", "touchstart"].forEach((ev) => window.addEventListener(ev, idleReset, { passive: true }));
+setInterval(() => {
+  if (!idleLimit) return;
+  idleLeft--;
+  if (idleLeft <= 0) { idleLimit = 0; logout(); return; }
+  if (idleLeft <= IDLE_WARN) {
+    $("#idle-n").textContent = idleLeft;
+    $("#idle").hidden = false;
+  }
+}, 1000);
 $("#btn-pw").onclick = async () => {
   const old = prompt("目前密碼："); if (old === null) return;
   const nw = prompt("新密碼（至少 4 個字）："); if (nw === null) return;
@@ -153,7 +175,8 @@ async function viewFill() {
         <button id="clear-all" class="danger">全部清除</button>
         <span class="spacer"></span>
         <span class="total" id="total"></span>
-        <button class="primary" id="save">儲存</button>
+        <button id="save">儲存</button>
+        <button class="primary" id="save-out">儲存並登出</button>
       </div>
       <div id="grid"></div>
       <p class="sub" id="saved"></p>
@@ -184,14 +207,17 @@ async function viewFill() {
   $("#total").textContent = `共 ${days.reduce((a, v) => a + count(v), 0)} 小時`;
   $("#copy-mon").onclick = () => { days = days.map(() => days[0]); changed(); render(); };
   $("#clear-all").onclick = () => { if (confirm("確定全部清除？")) { days = [0, 0, 0, 0, 0, 0, 0]; changed(); render(); } };
-  $("#save").onclick = async () => {
+  const save = async () => {
     try {
       const r = await api("PUT", "/api/availability", { week_start: wk, days });
       dirty = false; updated(r.updated_at);
       $("#total").textContent = `共 ${days.reduce((a, v) => a + count(v), 0)} 小時`;
       toast("已儲存");
-    } catch (e) { toast(e.message, true); }
+      return true;
+    } catch (e) { toast(e.message, true); return false; }
   };
+  $("#save").onclick = save;
+  $("#save-out").onclick = async () => { if (await save()) { alert("已儲存，按確定後登出。"); logout(); } };
 }
 
 async function viewMySchedule(week) {
